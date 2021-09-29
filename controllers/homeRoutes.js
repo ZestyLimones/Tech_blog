@@ -4,8 +4,6 @@ const { Blog, User, Comment } = require('../models');
 
 router.get('/', async (req, res) => {
   try {
-    //dont forget to remove this comment
-    // res.send('this worked');
     const blogData = await Blog.findAll({
       include: [{ model: User }],
     });
@@ -35,13 +33,14 @@ router.get('/blogs/:id', async (req, res) => {
               attributes: ['username'],
             },
           ],
-          attributes: ['id', 'content', 'date_created', 'commentor_id'],
+          attributes: ['id', 'details', 'date_created', 'user_id'],
         },
       ],
     });
+    const blog = blogData.get({ plain: true });
     res.render('blog', {
       ...blog,
-      logged_in: req.session.logged_in,
+      // logged_in: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err);
