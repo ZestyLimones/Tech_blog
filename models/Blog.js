@@ -1,5 +1,3 @@
-// THEN I am taken to the homepage and presented with existing blog posts that include the post title and the date created
-// THEN I am presented with the post title, contents, post creator’s username, and date created for that post and have the option to leave a comment
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
@@ -33,13 +31,6 @@ Blog.init(
         key: 'id',
       },
     },
-    // comment_id: {
-    //   type: DataTypes.STRING,
-    //   references: {
-    //     model: 'comment',
-    //     key: 'id',
-    //   },
-    // },
   },
   {
     sequelize,
