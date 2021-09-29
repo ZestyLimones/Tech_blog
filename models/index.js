@@ -8,6 +8,7 @@ Blog.belongsTo(User, {
 
 User.hasMany(Blog, {
   foreignKey: 'user_id',
+  onDelete: 'CASCADE',
 });
 
 //look into added relationships for Comments
