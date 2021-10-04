@@ -17,9 +17,9 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/blog', withAuth, async (req, res) => {
+router.get('/create-blog', withAuth, async (req, res) => {
   try {
-    res.render('blog', {
+    res.render('create-blog', {
       logged_in: true,
     });
   } catch (err) {
