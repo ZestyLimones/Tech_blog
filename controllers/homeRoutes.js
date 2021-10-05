@@ -62,6 +62,20 @@ router.get('/blogs/:id', async (req, res) => {
   }
 });
 
+router.get('blogs/edit/:id', async (req, res) => {
+  try {
+    const blogData = await Blog.findByPk(req.params.id);
+    const blogPost = blogData.get({ plain: true });
+
+    res.render('blog-edit', {
+      ...blogPost,
+      logged_in: true,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 router.get('/dashboard', withAuth, async (req, res) => {
   try {
     const userData = await User.findByPk(req.session.user_id, {
