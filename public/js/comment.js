@@ -1,40 +1,26 @@
-// const blogId = document.querySelector('input[name="blog-id"]').value;
+const commentFormHandler = async (event) => {
+  event.preventDefault();
 
-// console.log(blogId);
+  const blogId = document.querySelector('input[name="blog-id"]').value;
+  const details = document.querySelector('#comment-details').value.trim();
 
-// const editFormHandler = async (event) => {
-//   event.preventDefault();
-//   const title = document.querySelector('#blog-title').value.trim();
-//   const content = document.querySelector('#blog-content').value.trim();
+  if (details) {
+    const response = await fetch(`/api/blogs/${blogId}/comment`, {
+      method: 'PUT',
+      body: JSON.stringify({
+        details,
+      }),
+      headers: { 'Content-Type': 'application/json' },
+    });
 
-//   if (title && content) {
-//     const response = await fetch(`/api/blogs/${blogId}`, {
-//       method: 'PUT',
-//       body: JSON.stringify({ title, content }),
-//       headers: { 'Content-Type': 'application/json' },
-//     });
+    if (response.ok) {
+      document.location.reload();
+    } else {
+      alert('failed to add comment');
+    }
+  }
+};
 
-//     if (response.ok) {
-//       document.location.replace('/dashboard');
-//     } else {
-//       alert('failed to edit post');
-//     }
-//   }
-// };
-
-// const deletePost = async (event) => {
-//   event.preventDefault();
-//   const response = await fetch(`/api/blogs/${blogId}`, {
-//     method: 'DELETE',
-//   });
-//   if (response.ok) {
-//     document.location.replace('/dashboard');
-//   } else {
-//     alert('failed to delete post');
-//   }
-// };
-
-// document
-//   .querySelector('.edit-blog')
-//   .addEventListener('submit', editFormHandler);
-// document.querySelector('#delete-btn').addEventListener('click', deletePost);
+document
+  .querySelector('.comment-form')
+  .addEventListener('submit', commentFormHandler);
