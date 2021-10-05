@@ -1,6 +1,7 @@
 <div>
     <h3>Edit my Post</h3>
     <form class="form edit-blog">
+        <input type="hidden" name="blog-id" value="{{id}}">
         <div class="form-group">
             <label for="blog-title" class="form-label">Title</label>
             <input type="text" name="blog-title" value={{title}} class="form-input" id='blog-title'>
@@ -17,3 +18,4 @@
         </div>
     </form>
 </div>
+<script src='/js/edit-blog.js'></script>
