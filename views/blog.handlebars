@@ -17,6 +17,7 @@
     </div>
     {{/each}}
   </div>
+  {{#if logged_in}}
   <h3>Add Comment</h3>
   <form class='form comment-form'>
     <input type="hidden" name='blog-id' value='{{id}}'>
@@ -29,5 +30,6 @@
     </div>
   </form>
 </div>
+{{/if}}
 
 <script src='/js/comment.js'></script>
